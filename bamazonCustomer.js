@@ -5,8 +5,9 @@ var chalk = require("chalk");
 // create connection
 var db = mysql.createConnection({
   host: "localhost",
+  port: 3306,
   user: "root",
-  password: "",
+  password: "Winter19!",
   database: "bamazon_DB"
 });
 // validataInput makes sure that the user is supplying positive INT
@@ -127,7 +128,8 @@ function displayInventory() {
       stringOutPut += chalk.red("Item ID: ") + data[i].item_id + " // ";
       stringOutPut +=
         chalk.red("Product Name: ") + data[i].product_name + " // ";
-      stringOutPut += chalk.red("Department: ") + data[i].price + "\n";
+      stringOutPut += chalk.red("Department: ") + data[i].department_name + " // ";
+      stringOutPut += chalk.red("Price: ") + '$' + data[i].price + "\n";
 
       console.log(chalk.yellow(stringOutPut));
     }
