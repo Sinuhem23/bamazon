@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "using mysql with node",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sinuhem23/bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sinuhem23/bamazon/issues"
+  },
+  "homepage": "https://github.com/Sinuhem23/bamazon#readme",
+  "dependencies": {
+   
+    "inquirer": "^7.0.0",
+    "mysql": "^2.17.1"
+  }
+}
