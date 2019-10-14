@@ -1,11 +1,12 @@
 var mysql = require('mysql');
 var inquirer = require('inquirer');
+var chalk = require('chalk');
 
 // create connection
 var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : "",
+    password : "Winter19!",
     database : 'bamazon_DB'
    
 });
@@ -18,7 +19,7 @@ function validateInput(value) {
         return true;
 
     }else{
-        return 'Whole number is needed, try again.(Can not be zero.)';
+        return (chalk.bgRed.white.bold('Whole number is needed, try again.(Can not be zero.)'));
     }
 }
 
@@ -28,14 +29,14 @@ function purchasePrompt(){
         {
             type: 'input',
             name: 'item_id',
-            message: "Please enter the ID of the item you desire.",
+            message: (chalk.cyan("Please enter the ID of the item you desire.")),
             validate: validateInput,
             filter: Number
         },
         {
             type: 'input',
             name: 'quantity',
-            message: 'How many would you like?',
+            message: (chalk.cyanBright('How many would you like?')),
             validate: validateInput,
             filter: Number
         }
@@ -49,13 +50,13 @@ function purchasePrompt(){
             if (err) throw err;
 
             if (data.length === 0){
-                console.log("ERROR: The Item ID entered is invalid. Please try again.");
+                console.log(chalk.bgRed.white.bold(("ERROR: The Item ID entered is invalid. Please try again.")));
                 displayInventory();
             }else {
                 var productData = data[0];
                 // If quantity requested is in stock
               if (quantity <= productData.stock_quantity){
-                  console.log ('Your in LUCK! Your requested product is in stock! Order is now in progress.');
+                  console.log (chalk.bgWhite.blue.bold('\nYour in LUCK! ') +  chalk.blue('\nYour requested product is in ') +  chalk.yellowBright('stock! ') + chalk.blue('Order is now in progress.'));
                   
                 //   Updating query string
 
@@ -64,16 +65,16 @@ function purchasePrompt(){
                 db.query (updatingQueryString, function(err, data) {
                     if (err) throw err;
 
-                    console.log('Its READY! your total is $' + productData.price * quantity);
-                    console.log('Thank You! Please come again!');
+                    console.log(chalk.bgWhite.red.bold('\nIts READY! ') + chalk.green('\nYour total is ') + chalk.greenBright('$' + productData.price * quantity));
+                    console.log(chalk.yellow('\nThank You! Please come again!'));
                     console.log("\n-----------------------------------------------------------\n");
 
                     // Ending Database
                     db.end();
                 })
                 }else {
-                    console.log('OH NO! There is not enough in stock. Your order was not placed.');
-                    console.log('Please retry');
+                    console.log(chalk.bgRed.white.bold('OH NO! There is not enough in stock. Your order was not placed.'));
+                    console.log(chalk.bgMagenta.white('Please retry'));
                     console.log ('\n-------------------------------------------------------\n');
                     displayInventory();
                 }  
@@ -90,17 +91,17 @@ function displayInventory() {
     // db query
 db.query(queryString, function (err, data) {
     if (err) throw err;
-    console.log("Current Inventory:");
+    console.log(chalk.bgGreen.white("Current Inventory:"));
     console.log(".................\n");
 
      var stringOutPut = '';
      for (var i = 0; i < data.length;i++) {
          stringOutPut = '';
-         stringOutPut += 'Item ID: ' + data[i].item_id + ' // ';
-         stringOutPut += 'Product Name: ' + data[i].product_name + ' // ';
-         stringOutPut += 'Department: ' + data[i].price + '\n';
+         stringOutPut += (chalk.red('Item ID: ')) + data[i].item_id + ' // ';
+         stringOutPut += (chalk.red('Product Name: ')) + data[i].product_name + ' // ';
+         stringOutPut += (chalk.red('Department: ')) + data[i].price + '\n';
          
-         console.log(stringOutPut);
+         console.log(chalk.yellow(stringOutPut));
      }
      console.log("--------------------------------------------\n");
 
