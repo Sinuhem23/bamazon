@@ -5,7 +5,7 @@ var inquirer = require('inquirer');
 var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : "Winter19!",
+    password : "",
     database : 'bamazon_DB'
    
 });
