@@ -5,6 +5,7 @@ var inquirer = require('inquirer');
 var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
+    password : "Winter19!",
     database : 'bamazon_DB'
    
 });
@@ -42,7 +43,7 @@ function purchasePrompt(){
         var item = input.item_id;
         var quantity = input.quantity;
 
-        var queryString = 'SELECR * FROM products WHERE ?';
+        var queryString = 'SELECT * FROM products WHERE ?';
 
         db.query(queryString, {item_id: item}, function(err, data) {
             if (err) throw err;
@@ -81,3 +82,35 @@ function purchasePrompt(){
     })
 }
 
+// Current inventory from db then display output in console
+
+function displayInventory() {
+    queryString = 'SELECT * FROM products';
+
+    // db query
+db.query(queryString, function (err, data) {
+    if (err) throw err;
+    console.log("Current Inventory:");
+    console.log(".................\n");
+
+     var stringOutPut = '';
+     for (var i = 0; i < data.length;i++) {
+         stringOutPut = '';
+         stringOutPut += 'Item ID: ' + data[i].item_id + ' // ';
+         stringOutPut += 'Product Name: ' + data[i].product_name + ' // ';
+         stringOutPut += 'Department: ' + data[i].price + '\n';
+         
+         console.log(stringOutPut);
+     }
+     console.log("--------------------------------------------\n");
+
+    //  Prompt the user for item/quantity they would like to purchase
+    purchasePrompt();
+})
+}
+// execute main app logic and display available inventory
+function runBamazon() {
+    displayInventory();
+}
+// Run app logic
+runBamazon();
