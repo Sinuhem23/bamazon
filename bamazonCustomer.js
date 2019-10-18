@@ -7,7 +7,7 @@ var db = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "Winter19!",
   database: "bamazon_DB"
 });
 // validataInput makes sure that the user is supplying positive INT

@@ -15,15 +15,19 @@ CREATE TABLE products (
 INSERT INTO products 
 (product_name, department, price, stock_quantity)
 VALUES 
-('MacBook-Pro', 'Electronics', 60),
-('iPad-Pro', 'Electronics', 20),
-('Apple-TV', 'Electronics', 100),
-('Nike-Socks', 'Apparel', 300),
-('Adidas-Socks', 'Apparel', 200),
-('Puma-Socks', 'Apparel', 100),
-('Abstract-Painting', 'Art', 2),
-('Painting-Kit', 'Art', 200),
-('Canvas', 'Art', 300),
-('Easels', 'Art', 30);
+INSERT INTO products 
+(product_name, department, price, stock_quantity)
+VALUES 
+('MacBook-Pro', 'Electronics', 2000, 60),
+('iPad-Pro', 'Electronics', 1000, 20),
+('Apple-TV', 'Electronics', 200, 100),
+('Nike-Socks', 'Apparel', 10, 300),
+('Adidas-Socks', 'Apparel', 10, 200),
+('Puma-Socks', 'Apparel', 8, 100),
+('Abstract-Painting', 'Art', 5000, 2),
+('Painting-Kit', 'Art', 60, 200),
+('Canvas', 'Art', 10, 300),
+('Easels', 'Art', 200, 30);
+
 
 SELECT * FROM products
